@@ -1,6 +1,6 @@
 USE employeesDB;
 
-INSERT INTO department (name) VALUES ('Sales', 'Engineering', 'Finance', 'Legal');
+INSERT INTO department (name) VALUES ('Sales'), ('Engineering'), ('Finance'), ('Legal');
 
 INSERT INTO role (title, salary, department_id) VALUES 
 ('Sales Lead', 100000, 1),
@@ -12,9 +12,9 @@ INSERT INTO role (title, salary, department_id) VALUES
 ('Lawyer', 190000, 4);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES 
-('Liam', 'Smith', 1, NULL)
-('James', 'Hernandez', 2, 1)
-('Mary', 'Lee', 3, NULL)
+('Liam', 'Smith', 1, NULL),
+('James', 'Hernandez', 2, 1),
+('Mary', 'Lee', 3, NULL),
 ('Patricia', 'Rodriguez', 4, 3),
 ('Jennifer', 'Williams', 5, NULL),
 ('Michael', 'Anderson', 6, 5),
