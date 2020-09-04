@@ -1,8 +1,8 @@
-let mysql = require("mysql");
-let inquirer = require("inquirer");
-let consoleTable = require('console.table');
+const mysql = require("mysql");
+const inquirer = require("inquirer");
+const consoleTable = require('console.table');
 
-let db = mysql.createConnection({
+const db = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
@@ -132,19 +132,17 @@ function addRole() {
         message: 'Enter the salary of the new role'  
         },
         {
-        name: 'deptartmentId',
+        name: 'departmentId',
         type: 'input',
         message: 'Enter the id of the department'  
         }
     ]).then(function(answer) {
-       console.log(answer);
-       answer.departmentId = 6;
         db.query(
-            'INSERT INTO role ?', 
+            'INSERT INTO role SET ?', 
             {
             title: answer.role,
-            salary: parseFloat(answer.salary),
-            department_id: parseInt(answer.departmentId)
+            salary: answer.salary,
+            department_id: answer.departmentId
             }
         );
         const query = 'SELECT * FROM role';
@@ -183,7 +181,7 @@ function addEmployee() {
             }
     ]).then(function(answer) {
         db.query(
-            'INSERT INTO employee ?', 
+            'INSERT INTO employee SET ?', 
             {
             first_name: answer.first_name,
             last_name: answer.last_name,
@@ -200,11 +198,25 @@ function addEmployee() {
     });
 }
 
-function updateRole() {
-    inquirer
-        .prompt({
-            name: 'id',
-            type: 'input',
-            message: 'Enter employee '
-        })
-}
+// function updateRole() {
+//     const query = 'SELECT * FROM employee';
+//     let employees;
+//     db.query(query, function(err, res) {
+//         if (err) throw err;
+//         // console.table('All employees:', res);
+//         employees = res.map(function(employee){
+//             return employee.first_name + ' ' + employee.last_name;
+//         });
+//         console.log('employees: ', employees)
+//     });
+   
+//     inquirer
+//         .prompt({
+//             name: 'id',
+//             type: 'rawlist',
+//             message: 'Choose employee',
+//             choices: employees
+//         }).then(function(answer){
+//             console.log(answer)
+//         })
+// }
