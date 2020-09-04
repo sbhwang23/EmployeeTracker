@@ -25,4 +25,6 @@ CREATE TABLE employee (
     PRIMARY KEY(id)
 );
 
-select * FROM employee
+
+
+
