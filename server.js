@@ -198,25 +198,24 @@ function addEmployee() {
     });
 }
 
-// function updateRole() {
-//     const query = 'SELECT * FROM employee';
-//     let employees;
-//     db.query(query, function(err, res) {
-//         if (err) throw err;
-//         // console.table('All employees:', res);
-//         employees = res.map(function(employee){
-//             return employee.first_name + ' ' + employee.last_name;
-//         });
-//         console.log('employees: ', employees)
-//     });
+function updateRole() {
+    const query = 'SELECT * FROM employee';
+    let employees;
+    db.query(query, function(err, res) {
+        if (err) throw err;
+        employees = res.map(function(employee){
+            return employee.first_name + ' ' + employee.last_name;
+        });
+        console.log('employees: ', employees)
+    });
    
-//     inquirer
-//         .prompt({
-//             name: 'id',
-//             type: 'rawlist',
-//             message: 'Choose employee',
-//             choices: employees
-//         }).then(function(answer){
-//             console.log(answer)
-//         })
-// }
+    inquirer
+        .prompt({
+            name: 'id',
+            type: 'rawlist',
+            message: 'Choose employee',
+            choices: employees
+        }).then(function(answer){
+            console.log(answer)
+        })
+}
