@@ -206,16 +206,27 @@ function updateRole() {
         employees = res.map(function(employee){
             return employee.first_name + ' ' + employee.last_name;
         });
-        console.log('employees: ', employees)
+        console.table(employees)
     });
    
     inquirer
-        .prompt({
-            name: 'id',
+        .prompt([
+            {
+            name: 'name',
             type: 'rawlist',
             message: 'Choose employee',
             choices: employees
-        }).then(function(answer){
-            console.log(answer)
-        })
+            },
+            {
+            name: 'role_id',
+            type: 'input',
+            message: 'Enter the new role'
+            }
+    ]).then(function(answer){
+        db.query('UPDATE employee SET role_id = ? WHERE first_name = ?', [answer.role_id, answer.name], function (err, res) {
+            if (err) throw err;
+            console.table('All employees:', res);
+        viewEmployees();
+            })
+        });
 }
