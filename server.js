@@ -171,13 +171,11 @@ function addEmployee() {
             name: 'role_id',
             type: 'input',
             message: 'Enter the role of the employee'
-            // choices: pull in roles data 
             },
             {
             name: 'manager_id',
             type: 'input',
             message: 'Select the name of the manager (if applicable)' 
-            // choices: pull in manager names
             }
     ]).then(function(answer) {
         db.query(
@@ -199,23 +197,22 @@ function addEmployee() {
 }
 
 function updateRole() {
-    const query = 'SELECT * FROM employee';
     let employees;
-    db.query(query, function(err, res) {
+    db.query('SELECT * FROM employee', function(err, res) {
         if (err) throw err;
         employees = res.map(function(employee){
             return employee.first_name + ' ' + employee.last_name;
         });
-        console.table(employees)
+        console.table(employees);
     });
    
     inquirer
         .prompt([
             {
             name: 'name',
-            type: 'rawlist',
-            message: 'Choose employee',
-            choices: employees
+            type: 'input',
+            message: 'First name of employee',
+            // choices: 
             },
             {
             name: 'role_id',
